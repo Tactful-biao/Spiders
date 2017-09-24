@@ -15,8 +15,8 @@ headers={
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36',
     'Referer': 'http://www.mzitu.com/'
 }
-def get_pic(page):
-    url = 'http://www.mzitu.com/page/' + str(page)
+def get_pic(pag):
+    url = 'http://www.mzitu.com/page/' + str(pag)
     html = requests.get(url,  headers=headers).content
     soup = BeautifulSoup(html, 'lxml')
     links = soup.find('ul', attrs={'id': 'pins'}).find_all('li')
