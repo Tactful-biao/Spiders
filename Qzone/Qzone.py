@@ -124,22 +124,56 @@ class Spider(object):
                             'name': self.name[self.qq_num.index(q)],
                             'qq': q
                         }
+                        print(data)
                         black.insert(data)
                 else:
                     shuo = mood.text[17: -2]
                     try:
                         js = json.loads(shuo)
                         for s in js['msglist']:
+                            unikey = []
                             if not s['commentlist']:
                                 s['commentlist'] = list()
                             if 'pic' in s:
                                 pics = []
                                 for j in range(len(s['pic'])):
                                     pics.append(s['pic'][j]['url2'])
+                                if len(s['pic']) == 1:
+                                    unikey.append(s['pic'][0]['curlikekey'])
+                            else:
+                                pics = []
+                                unikey.append('http://user.qzone.qq.com/{}/mood/'.format(q) + s['tid'] + '.1')
+                            like_url = 'https://user.qzone.qq.com/proxy/domain/users.qzone.qq.com/cgi-bin/likes/get_like_list_app?'
+                            if len(unikey) is not 0:
+                                param = {
+                                    'uin': self.__username,
+                                    'unikey': unikey[0],
+                                    'begin_uin': 0,
+                                    'query_count': 60,
+                                    'if_first_page': 1,
+                                    'g_tk': self.g_tk
+                                }
+                                like_url = like_url + parse.urlencode(param)
+                                like = self.req.get(url=like_url, headers=self.headers)
+                                m = like.text.encode(like.encoding)
+                                p = m.decode('utf-8')
+                                li = json.loads(p[10: -3])
+                                likers = []
+                                if len(li['data']['like_uin_info']) is not 0:
+                                    for lik in range(len(li['data']['like_uin_info'])):
+                                        info = {
+                                            'fuin': li['data']['like_uin_info'][lik]['fuin'],
+                                            'sex': li['data']['like_uin_info'][lik]['gender'],
+                                            'nick': li['data']['like_uin_info'][lik]['nick'],
+                                            'address': li['data']['like_uin_info'][lik]['addr'],
+                                            'constellation': li['data']['like_uin_info'][lik]['constellation']
+                                        }
+                                        likers.append(info)
                                 data = {
                                     'name': str(s['name']),
                                     '_id': str(s['uin']) + '_' + str(random.random() * 10).replace('.', ''),
-                                    'CreateTime': s['createTime'],
+                                    'CreateTime': time.strftime('%Y-%m-%d %H:%M:%S',
+                                                                time.localtime(int(s['created_time']))),
                                     'source': s['source_name'],
                                     'content': s['content'],
                                     'forward': int(s['fwdnum']),
@@ -147,7 +181,9 @@ class Spider(object):
                                         [(x['content'], x['createTime2'], x['name'], x['uin']) for x in
                                          list(s['commentlist'])]),
                                     'comment': int(s['cmtnum']),
-                                    'pic': pics
+                                    'pic': pics,
+                                    'like': li['data']['total_number'],
+                                    'likers': likers
                                 }
                                 if shuoshuo.insert(data):
                                     print('%s 的说说写入到数据库成功！' % self.name[self.qq_num.index(q)])
@@ -271,9 +307,9 @@ class Spider(object):
 if __name__ == '__main__':
     sp = Spider()
     sp.login()
-    #sp.get_information()
+    sp.get_information()
     t = time.perf_counter()
-    #sp.get_board()
-    #sp.get_mood()
+    sp.get_board()
+    sp.get_mood()
     End = time.perf_counter() - t
-    print('所有数据爬取完成！总用时%s!' % End)
+    print('所有留言爬取完成！总用时%s!' % End)
