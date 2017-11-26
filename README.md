@@ -21,16 +21,48 @@
 4. Qzone是一个爬取QQ空间的爬虫，爬取了QQ好友的全部说说，留言，以及个人信息等数据，在我的博客中对该爬虫的思路等进行了简单的介绍
 ，可以参考我的这篇文章[<爬取QQ空间>][3]
 
- 爬虫QZone通过Phantomjs模拟登录获取Cookies进行操作，爬取了全部好友的个人说说(包括好友姓名(name), 设备(source), 具体内容(content), 发表时间(createTime), 转发量(forward), 评论内容(comment)
- ,配图(pics), 点赞数(like), 具体点赞的人(likers, qq号, 性别, 地址, 星座))。
+ >爬虫QZone通过Phantomjs模拟登录获取Cookies进行操作，爬取了全部好友的个人说说：
+
+ + 好友姓名(name)
+ + 设备(source)
+ + 具体内容(content)
+ + 发表时间(createTime)
+ + 转发量(forward)
+ + 评论内容(comment)
+ + 配图(pics)
+ + 点赞数(like)
+ + 具体点赞的人(likers, qq号, 性别, 地址, 星座))
  
- 留言爬取的内容包括好友姓名(owner), 总留言数(total), 留言人的昵称(name), 留言人的qq(qq)
- , 留言的时间(time), 留言的内容(content), 回复的内容(replyList(包括回复人的昵称和回复的内容))。
+ >留言爬取的内容包括
+
+ * 好友姓名(owner)
+ * 总留言数(total)
+ * 留言人的昵称(name)
+ * 留言人的qq(qq)
+ * 留言的时间(time)
+ * 留言的内容(content)
+ * 回复的内容(replyList(包括回复人的昵称和回复的内容))
  
-  个人档的爬取包括好友空间名称(spacename), 好友昵称(nickname), 空间标语(desc), 性别(sex), 年龄(age), 生日(birthday), 星座(constellation), 国家(country), 省份(province)
-, 城市(city), 家乡(hometown), 婚姻状态(marriage), 职业(chreer), 详细地址(address).
+ >个人档的爬取包括
+
+ + 好友空间名称(spacename)
+ + 好友昵称(nickname)
+ + 空间标语(desc)
+ + 性别(sex)
+ + 年龄(age)
+ + 生日(birthday)
+ + 星座(constellation)
+ + 国家(country)
+ + 省份(province)
+ + 城市(city)
+ + 家乡(hometown)
+ + 婚姻状态(marriage)
+ + 职业(chreer)
+ + 详细地址(address)
 
 数据统一存储在mongodb中，分了四个表，分别是black(记录无法访问空间的好友), information(存储个人信息的表), board(存储留言的表), mood(存储说说的表).
+
+另外点赞的人的爬取需要加上时间限制，如果不加的话，会出现系统繁忙等问题。(亲身经历)
 
 该项目我会不断完善的，如果有什么好的建议或者疑问可以在issues中提，我会尽力解决。
 
