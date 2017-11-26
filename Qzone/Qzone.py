@@ -188,6 +188,7 @@ class Spider(object):
                                 if shuoshuo.insert(data):
                                     print('%s 的说说写入到数据库成功！' % self.name[self.qq_num.index(q)])
                         pos += 20
+			time.sleep(2)
                     except:
                         print('%s 的说说写入到数据库失败！' % self.name[self.qq_num.index(q)])
 
@@ -312,4 +313,4 @@ if __name__ == '__main__':
     sp.get_board()
     sp.get_mood()
     End = time.perf_counter() - t
-    print('所有留言爬取完成！总用时%s!' % End)
+    print('所有内容爬取完成！总用时%s!' % End)
