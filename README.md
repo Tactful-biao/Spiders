@@ -23,9 +23,11 @@
    + NCRE.py 是查询全国计算机二级(高级Office)的脚本
    + cet_new.py 是查询大学英语四六级的一个脚本。
    + movie.py 是一个资源获取的脚本(各种资源，只需给个关键词就可以获得想要的东西，自己去探索)
-
-  用法： python3 movie.py 想要的资源名称
-    ![4][4]
+     + 用法： python3 movie.py 想要的资源名称
+       ![4][4]
+     + 另外，我做了一个网页版的查询, 地址在[http://xxooml.xyz/](http://xxooml.xyz/)，提供种子链接，电脑端如果安装了迅雷等下载器，点击Megent Link就可以直接下载，手机端不支持直接下载。欢迎去体验。多多支持，多多打赏。
+     效果如下：
+     ![5][5]
 
    脚本中有简单的注释。如果有不了解的地方，欢迎到我的博客上留言。
 
@@ -89,3 +91,4 @@
 [2]: http://bbiao.me/2017/09/17/%E7%88%AC%E5%8F%96%E3%80%8A%E7%94%B5%E5%BD%B1%E5%A4%A9%E5%A0%82%E3%80%8B%E6%89%80%E6%9C%89%E7%94%B5%E5%BD%B1%E7%A7%8D%E5%AD%90/
 [3]: http://bbiao.me/2017/11/23/%E7%88%AC%E5%8F%96QQ%E7%A9%BA%E9%97%B4/
 [4]: http://oxwgzg29g.bkt.clouddn.com/use.png
+[5]: http://oxwgzg29g.bkt.clouddn.com/use2.png
