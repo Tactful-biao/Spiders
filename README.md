@@ -6,7 +6,7 @@
   + baike.py  这是一个爬取糗事百科的简单的爬虫。详情请参考我的博客：[爬取糗事百科/][1]
   + mmjpg.py  是一个爬虫程序爬取 [http://www.mmjpg.com](http://www.mmjpg.com)代码中已经加入了详细的注释.当然如果你还有什么不懂的，欢迎来我的博客留言：[http://bbiao.me](http://bbiao.me)
   + seed.py  是爬取电影天堂所有电影种子的一个网络爬虫。可以参考我的博客：[爬取《电影天堂》所有电影种子][2]
-  + mzitu.py是一个爬虫程序，爬取妹子图(http://www.mzitu.com)代码中加入了多线程，爬取速度是十分快的
+  + mzitu.py是一个爬虫程序，爬取妹子图[http://www.mzitu.com](http://www.mzitu.com)代码中加入了多线程，爬取速度是十分快的
   代码没有添加注释
 
 2. 12306
