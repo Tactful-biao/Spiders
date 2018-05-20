@@ -24,8 +24,8 @@ class Spider(object):
         }
         self.req = requests.Session()
         self.cookies = {}
-        self.client = pymongo.MongoClient(host='localhost', port=27017)
-        self.db = self.client['QQ']
+        self.client = pymongo.MongoClient(host=qq.host, port=qq.port)
+        self.db = self.client[qq.db]
 
     def login(self):
         self.driver.switch_to.frame('login_frame')
@@ -70,7 +70,7 @@ class Spider(object):
         while (t):
             url_ = url + '&offset=' + str(offset)
             page = self.req.get(url=url_, headers=self.headers)
-            if '\"end\":1' in page.text:
+            if ('\"end\":1' and '\"uinlist\":[]') in page.text:
                 t = False
             else:
                 data = page.text[95:-5]

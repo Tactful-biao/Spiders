@@ -37,7 +37,13 @@
 5. Qzone是一个爬取QQ空间的爬虫，爬取了QQ好友的全部说说，留言，以及个人信息等数据，在我的博客中对该爬虫的思路等进行了简单的介绍
 ，可以参考我的这篇文章[<爬取QQ空间>][3]
 
+* Ubuntu 16.04 系统测试通过
+* 至少Python 3.5
+* 安装 selenium 并配置Phantomjs
+* 安装相关依赖 pip3 install -r requirements.txt
+
  >爬虫QZone通过Phantomjs模拟登录获取Cookies进行操作，爬取了全部好友的个人说说：
+
 
  + 好友姓名(name)
  + 设备(source)
