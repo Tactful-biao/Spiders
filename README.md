@@ -43,6 +43,8 @@
 * 安装 selenium 并配置Phantomjs
 * 安装相关依赖 pip3 install -r requirements.txt
 
+> 注: del_mood 是一个批量化删除说说的程序(全部删除)，涉及到说说删除，无法恢复，谨慎使用!
+
  >爬虫QZone通过Phantomjs模拟登录获取Cookies进行操作，爬取了全部好友的个人说说：
 
 
