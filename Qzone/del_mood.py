@@ -31,7 +31,6 @@ class Spider(object):
         self.driver.find_element_by_id('login_button').click()
         time.sleep(2)
         self.driver.implicitly_wait(2)
-        self.driver.get('http://user.qzone.qq.com/{}'.format(self.__username))
         cookie = ''
         for item in self.driver.get_cookies():
             cookie += item["name"] + '=' + item['value'] + ';'
@@ -74,8 +73,7 @@ class Spider(object):
             if '\"msglist\":null' in mood.text:
                 t = False
             else:
-                shuo = mood.text[17: -2]
-                tids = re.findall('"tid":".*?"', shuo)
+                tids = re.findall('"tid":".*?"', mood.text)
                 for tid in tids:
                     print(tid.replace('"tid":', '').replace('"', ''))
                     self.tids.append(tid.replace('"tid":', '').replace('"', ''))
