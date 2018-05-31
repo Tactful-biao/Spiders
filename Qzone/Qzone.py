@@ -188,7 +188,7 @@ class Spider(object):
                                 if shuoshuo.insert(data):
                                     print('%s 的说说写入到数据库成功！' % self.name[self.qq_num.index(q)])
                         pos += 20
-			time.sleep(3)
+                        time.sleep(3)
                     except:
                         print('%s 的说说写入到数据库失败！' % self.name[self.qq_num.index(q)])
 
