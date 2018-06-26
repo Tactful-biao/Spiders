@@ -1,0 +1,6 @@
+Flask>=1.0.2
+PyMySQL>=0.8.1
+WTForms>=2.2.1
+bs4>=0.0.1
+lxml>=4.2.2
+requests>=2.19.1

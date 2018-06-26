@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>搜索结果</title>
+    <style>
+        .fixed_img{
+            bottom:20px;
+            display:block;
+            height:200px;
+            position: fixed;
+            width:200px;
+        }
+    </style>
+</head>
+<body background="../static/bg.png">
+
+<div id="main" style="width: 100%;">
+    <div id="header" align="center">
+        <img style="width: 15%;" src="../static/logo.png">
+        <form method="post">
+            {{ form.search }}
+            <br /><br/>
+            <input type="submit" value="查询">
+        </form>
+    </div>
+    <div id="left" style="float: left; width: 20%; height: 80%">
+        <div><img class="fixed_img" src="../static/wechat.png"></div>
+    </div>
+    <div id="content" style="float: left; width: 60%; height: 80%">
+        {% for i in range(length) %}
+            <h3>{{ data[i][1].replace(kwd, '<font color=\"red\">'+kwd+'</font>') | safe}}</h3>
+            <div>
+                <a href="{{ data[i][2] }}">Magnet Link</a>
+                <span>&nbsp;&nbsp;&nbsp;Size: <font color="green"> {{ data[i][3] }} </font>&nbsp;&nbsp;&nbsp;</span>
+                <span>Date: <font color="green">{{ data[i][4] }}</font>&nbsp;&nbsp;&nbsp;</span>
+            </div>
+            <br />
+        {% endfor %}
+    </div>
+    <div id="right" style="height: 80%; width: 20%;float: right"><div><img class="fixed_img" src="../static/wechat.png"></div></div>
+</div>
+
+</body>
+</html>
