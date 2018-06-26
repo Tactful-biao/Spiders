@@ -8,5 +8,5 @@
 * config.py 配置mysql数据库的一些相关配置
 * movies.sql 是数据库的设计
 
-## 在我的公众号上我已经做了详细的介绍：一个简单程序员
+## 在我的公众号上我已经做了详细的介绍：一个简单程序猿
 <img src="https://bbiao.me/images/gzh.jpg" width="200" hegiht="200" align=center />
