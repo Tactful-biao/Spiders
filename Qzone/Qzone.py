@@ -51,41 +51,23 @@ class Spider(object):
         self.get_friends()
         self.driver.quit()
 
-    def get_friends_url(self):
-        '''
-        构造好友请求链接
-        :return: 链接
-        '''
-        url = 'https://h5.qzone.qq.com/proxy/domain/base.qzone.qq.com/cgi-bin/right/get_entryuinlist.cgi?'
-        params = {
-            'uin': self.__username,
-            'ver': 1,
-            'fupdate': 1,
-            'action': 1,
-            'g_tk': self.g_tk
-        }
-        url = url + parse.urlencode(params)
-        return url
-
     def get_friends(self):
         '''
         获取全部好友
-        :return: 好友以及对应QQ列表
+        :return: qq, name
         '''
-        offset, t = 0, True
-        url = self.get_friends_url()
+        url = 'https://user.qzone.qq.com/proxy/domain/r.qzone.qq.com/cgi-bin/tfriend/friend_hat_get.cgi?'
+        params = {
+            'uin': self.__username,
+            'fupdate': 1,
+            'g_tk': self.g_tk
+        }
+        url = url + parse.urlencode(params)
+        friends = self.req.get(url, headers=self.headers).text
         name, qq_num = [], []
-        while (t):
-            url_ = url + '&offset=' + str(offset)
-            page = self.req.get(url=url_, headers=self.headers)
-            if ('\"end\":1' and '\"uinlist\":[]') in page.text:
-                t = False
-            else:
-                names, qqs = re.findall('label":.*"', page.text), re.findall('"\d+"', page.text)
-                for _, __ in zip(names, qqs):
-                    name.append(re.sub('label":|"', '', _))
-                    qq_num.append(re.sub('"', '', __))
-            offset += 50
+        for _qq, _name in zip(re.findall('"\d+"', friends), re.findall('"realname":.*"', friends)):
+            name.append(re.sub('"|realname|:', '', _name))
+            qq_num.append(re.sub('"', '', _qq))
         self.name, self.qq_num = name, qq_num
 
     def get_g_tk(self):
