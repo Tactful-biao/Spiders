@@ -14,8 +14,8 @@ class Spider(object):
         '''
         self.driver = webdriver.PhantomJS()
         self.driver.get('https://qzone.qq.com/')
-        self.__username = qq.qq1
-        self.__password = qq.mm1
+        self.__username = qq.qq
+        self.__password = qq.mm
         self.headers = {
             'host': 'h5.qzone.qq.com',
             'accept-encoding': 'gzip, deflate, br',
