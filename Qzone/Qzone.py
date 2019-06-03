@@ -13,7 +13,7 @@ class Spider(object):
         初始化
         '''
         self.driver = webdriver.PhantomJS()
-        self.driver.get('https://i.qq.com/')
+        self.driver.get('https://qzone.qq.com/')
         self.__username = qq.qq1
         self.__password = qq.mm1
         self.headers = {
