@@ -12,7 +12,8 @@ class Spider(object):
         '''
         初始化
         '''
-        self.driver = webdriver.PhantomJS()
+        # 默认使用Chrome，可以根据需求改成PhantomJS等
+        self.driver = webdriver.Chrome()
         self.driver.get('https://qzone.qq.com/')
         self.__username = qq.qq
         self.__password = qq.mm
